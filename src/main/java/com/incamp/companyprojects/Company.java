@@ -9,8 +9,7 @@ import javax.persistence.Id;
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private
-    long id;
+    private Integer id;
     private String name;
 
     public long getId() {
