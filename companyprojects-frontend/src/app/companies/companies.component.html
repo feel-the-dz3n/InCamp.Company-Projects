@@ -3,6 +3,6 @@
 <p *ngIf="!isLoading">Select a company from the list below</p>
 <ul>
   <li *ngFor="let company of companies">
-    <a *routerLink="['company', company?.id]">{{company?.name}}</a>
+    <a [routerLink]="['company', company?.id]">{{company?.name}}</a>
   </li>
 </ul>
