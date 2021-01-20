@@ -12,11 +12,11 @@ public class Company {
     private Integer id;
     private String name;
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
