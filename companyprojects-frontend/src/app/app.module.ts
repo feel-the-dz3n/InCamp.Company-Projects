@@ -12,6 +12,7 @@ import { CompaniesComponent } from './companies/companies.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
