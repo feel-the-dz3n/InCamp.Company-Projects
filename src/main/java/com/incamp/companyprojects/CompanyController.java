@@ -17,6 +17,6 @@ public class CompanyController {
 
     @GetMapping("/{id}")
     public Company getCompany(@PathVariable Integer id) {
-        return companyService.getCompany(id);
+        return companyService.getCompany(id).get();
     }
 }
