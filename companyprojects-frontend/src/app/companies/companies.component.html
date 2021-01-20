@@ -1,1 +1,7 @@
-<p>companies works!</p>
+<h3>Companies</h3>
+<p *ngIf="isLoading">Loading</p>
+<ul>
+  <li *ngFor="let company of companies">
+    <a *routerLink="['company', company?.id]">{{company?.name}}</a>
+  </li>
+</ul>

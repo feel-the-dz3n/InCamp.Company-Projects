@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Company} from "../company.model";
 
 @Component({
   selector: 'app-companies',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./companies.component.scss']
 })
 export class CompaniesComponent implements OnInit {
-
-  constructor() { }
+  isLoading: boolean = false;
+  companies: Company[] | undefined;
 
   ngOnInit(): void {
+    // TODO: fetch companies from service here
   }
 
 }
