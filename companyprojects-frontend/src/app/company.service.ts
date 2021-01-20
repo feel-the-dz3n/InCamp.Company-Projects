@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class CompanyService {
-  private endpoint = 'localhost:8080';
+  private endpoint = 'http://127.0.0.1:8080';
 
   constructor(private http: HttpClient) {
   }
