@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CompaniesComponent } from "./companies/companies.component";
+import { CompanyComponent } from "./company/company.component";
 
 const routes: Routes = [
   { path: 'companies', component: CompaniesComponent },
-  // TODO: { path: 'company/:id', component: CompanyComponent },
+  { path: 'company/:id', component: CompanyComponent },
   { path: '', redirectTo: '/companies', pathMatch: 'full' },
 ];
 
