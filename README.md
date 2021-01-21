@@ -15,6 +15,7 @@
   - [ ] Company page contains company name and projects list
   - [ ] Each project is selectable
   - [ ] After selecting a project route changes to /project/:ID, so we are at project page
+  - [ ] Request: GET /company/ID/projects returns light variant of company's project (consists of project ID and Name)
 
 ### Company Project Page
 
