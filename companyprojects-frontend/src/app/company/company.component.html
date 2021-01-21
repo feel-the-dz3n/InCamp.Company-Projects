@@ -1,1 +1,9 @@
-<p>company works!</p>
+<h3>{{company?.name}}</h3>
+<p *ngIf="isLoading">Loading</p>
+<p *ngIf="!isLoading">Select project from the list below</p>
+<ul>
+  <li *ngIf="isLoading">Loading projects</li>
+  <li *ngFor="let companyProject of companyProjects">
+    <a [routerLink]="['/project', companyProject?.projectId]">{{companyProject?.projectName}}</a>
+  </li>
+</ul>
