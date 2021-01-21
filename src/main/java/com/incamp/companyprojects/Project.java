@@ -1,5 +1,8 @@
 package com.incamp.companyprojects;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
@@ -20,9 +23,11 @@ public class Project {
     private Company company;
 
     @OneToMany(fetch = FetchType.LAZY)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Technology> technologies;
 
     @OneToMany(fetch = FetchType.LAZY)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Person> people;
 
     public Integer getId() {
