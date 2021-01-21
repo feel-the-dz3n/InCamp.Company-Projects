@@ -22,11 +22,11 @@ public class Project {
     @ManyToOne(fetch = FetchType.EAGER)
     private Company company;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Technology> technologies;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Person> people;
 

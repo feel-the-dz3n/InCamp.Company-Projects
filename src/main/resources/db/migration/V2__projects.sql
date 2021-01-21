@@ -32,12 +32,6 @@ create table technology
     primary key (id)
 );
 
-alter table if exists project_people
-    add constraint UK_q7j3ruysyehtwd3m7frejfdqv unique (people_id);
-
-alter table if exists project_technologies
-    add constraint UK_ak4j8gqv94tp3795n6vxilpqa unique (technologies_id);
-
 alter table if exists project
     add constraint FK76fngi71pfr8phbobe5pq0swd foreign key (company_id) references company;
 
