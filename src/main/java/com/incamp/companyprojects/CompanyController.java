@@ -3,9 +3,9 @@ package com.incamp.companyprojects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/company")
-@CrossOrigin
 public class CompanyController {
     @Autowired
     private CompanyService companyService;
