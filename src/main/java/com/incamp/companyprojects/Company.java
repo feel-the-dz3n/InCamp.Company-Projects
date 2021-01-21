@@ -1,14 +1,15 @@
 package com.incamp.companyprojects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@SequenceGenerator(
+        name = "company-id-gen",
+        sequenceName = "COMPANY_SEQ",
+        allocationSize = 1)
 public class Company {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "company-id-gen")
     private Integer id;
     private String name;
 
