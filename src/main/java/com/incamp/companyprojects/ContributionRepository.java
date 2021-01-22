@@ -14,7 +14,7 @@ public interface ContributionRepository extends CrudRepository<Contribution, Int
             "c.project_id as ProjectId, " +
             "p.name as ProjectName " +
             "from contribution as c " +
-            "right join project as p on p.id = c.id " +
+            "right join project as p on p.id = c.project_id " +
             "where c.person_id = :personId", nativeQuery = true)
     Iterable<ContributionProjectDTO> findContributionProjectByPerson(@Param("personId") Integer personId);
 }
