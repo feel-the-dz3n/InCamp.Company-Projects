@@ -13,8 +13,11 @@ public class Contribution {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contrib-id-gen")
     Integer id;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     Project project;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    Person person;
 
     LocalDateTime startDate;
     LocalDateTime endDate;

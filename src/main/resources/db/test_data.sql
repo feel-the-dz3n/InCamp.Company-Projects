@@ -1,5 +1,5 @@
 TRUNCATE company, project, technology, project_technologies, project_people, person,
-    contribution, person_skills, person_contributions;
+    contribution, person_skills;
 
 INSERT INTO company VALUES(1, 'InterLink inCamp');
 
@@ -33,17 +33,14 @@ INSERT INTO project_people (project_id, people_id) VALUES(2, 1);
 INSERT INTO project_people (project_id, people_id) VALUES(2, 2);
 INSERT INTO project_technologies (project_id, technologies_id) VALUES (2, 2);
 
-INSERT INTO contribution (id, project_id, start_date, end_date)
-VALUES(1, 1, '2020-12-01 00:00:01', '2021-01-01 00:00:01');
-INSERT INTO person_contributions (person_id, contributions_id) VALUES (1, 1);
+INSERT INTO contribution (id, person_id, project_id, start_date, end_date)
+VALUES(1, 1, 1, '2020-12-01 00:00:01', '2021-01-01 00:00:01');
 
-INSERT INTO contribution (id, project_id, start_date, end_date)
-VALUES(2, 2, '2020-12-01 00:00:01', '2021-01-01 00:00:01');
-INSERT INTO person_contributions (person_id, contributions_id) VALUES (1, 2);
+INSERT INTO contribution (id, person_id, project_id, start_date, end_date)
+VALUES(2, 1, 2, '2020-12-01 00:00:01', '2021-01-01 00:00:01');
 
-INSERT INTO contribution (id, project_id, start_date, end_date)
-VALUES(3, 2, '2018-04-01 00:00:01', '2020-01-01 00:00:01');
-INSERT INTO person_contributions (person_id, contributions_id) VALUES (2, 3);
+INSERT INTO contribution (id, person_id, project_id, start_date, end_date)
+VALUES(3, 2, 2, '2018-04-01 00:00:01', '2020-01-01 00:00:01');
 
 INSERT INTO person_skills (person_id, skills_id) VALUES (1, 1);
 INSERT INTO person_skills (person_id, skills_id) VALUES (1, 2);

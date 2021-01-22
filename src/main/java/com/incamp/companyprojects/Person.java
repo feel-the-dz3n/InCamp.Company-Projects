@@ -21,10 +21,6 @@ public class Person {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Technology> skills;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Contribution> contributions;
-
     public Integer getId() {
         return id;
     }
@@ -47,14 +43,6 @@ public class Person {
 
     public void setSkills(List<Technology> skills) {
         this.skills = skills;
-    }
-
-    public List<Contribution> getContributions() {
-        return contributions;
-    }
-
-    public void setContributions(List<Contribution> contributions) {
-        this.contributions = contributions;
     }
 }
 
