@@ -1,0 +1,15 @@
+<h3 *ngIf="isLoading">Loading</h3>
+<h2>{{person?.name}}</h2>
+<h3>Skills</h3>
+<ul>
+  <li *ngIf="getSkills().length == 0">No skills</li>
+  <li *ngFor="let skill of getSkills()">{{skill.name}}</li>
+</ul>
+<h3>Contributions</h3>
+<ul>
+  <li *ngIf="contributions.length == 0">No contributions</li>
+  <li *ngFor="let c of contributions">
+    <p><a [routerLink]="['/project', c.projectId]">{{c.projectName}}</a></p>
+    <p>{{getDatePeriod(c.startDate ,c.endDate)}}</p>
+  </li>
+</ul>
