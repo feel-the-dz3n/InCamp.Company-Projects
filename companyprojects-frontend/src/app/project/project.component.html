@@ -7,12 +7,12 @@
   <li *ngFor="let person of getPeople()">
     <a [routerLink]="['/person', person.id]">{{person.name}}</a></li>
 </ul>
-<h3>Project needs more people? Suggestions:</h3>
-<ul>
-  <li *ngFor="let candidate of candidates">
-    <p><a [routerLink]="['/person', candidate.id]">{{candidate.name}}</a></p>
-    <p *ngFor="let skill of candidate.skills" style="display: inline; margin: 8px 0; padding: 0;">
-      {{skill.name}}
-    </p>
-  </li>
-</ul>
+<h3 style="padding-top: 16px;">Project needs more people?</h3>
+<h4 style="text-align: center;">These people might help you</h4>
+<div *ngFor="let candidate of candidates" class="candidate">
+  <h4><a [routerLink]="['/person', candidate.id]">{{candidate.name}}</a></h4>
+  <p>Experience:</p>
+  <p *ngFor="let skill of candidate.skills" style="display: inline; margin: 0; padding: 16px;">
+    {{skill.name}}
+  </p>
+</div>
