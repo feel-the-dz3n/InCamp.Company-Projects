@@ -3,11 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { CompaniesComponent } from "./companies/companies.component";
 import { CompanyComponent } from "./company/company.component";
 import { PersonComponent } from "./person/person.component";
+import { ProjectComponent } from "./project/project.component";
 
 const routes: Routes = [
   { path: 'companies', component: CompaniesComponent },
   { path: 'company/:id', component: CompanyComponent },
   { path: 'person/:id', component: PersonComponent },
+  { path: 'project/:id', component: ProjectComponent },
   { path: '', redirectTo: '/companies', pathMatch: 'full' },
 ];
 
