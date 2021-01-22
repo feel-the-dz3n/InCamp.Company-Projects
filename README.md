@@ -11,10 +11,11 @@
 
 ### Company Page
 
-- [ ] User can view company projects and choose a project, so he can go to a project page
-  - [ ] Company page contains company name and projects list
-  - [ ] Each project is selectable
-  - [ ] After selecting a project route changes to /project/:ID, so we are at project page
+- [x] User can view company projects and choose a project, so he can go to a project page
+  - [x] Company page contains company name and projects list
+  - [x] Each project is selectable
+  - [x] After selecting a project route changes to /project/:ID, so we are at project page
+  - [x] Request: GET /company/ID/projects returns light variant of company's project (consists of project ID and Name)
 
 ### Company Project Page
 

@@ -17,4 +17,8 @@ public class CompanyService {
     public Optional<Company> getCompany(Integer id) {
         return companyRepository.findById(id);
     }
+
+    public Iterable<CompanyProjectDTO> getCompanyProjects(Integer companyId) {
+        return companyRepository.getCompanyProjects(companyId);
+    }
 }

@@ -19,4 +19,9 @@ public class CompanyController {
     public Company getCompany(@PathVariable Integer id) {
         return companyService.getCompany(id).get();
     }
+
+    @GetMapping("/{id}/projects")
+    public Iterable<CompanyProjectDTO> getCompanyProjects(@PathVariable Integer id) {
+        return companyService.getCompanyProjects(id);
+    }
 }
