@@ -54,16 +54,18 @@ INSERT INTO person_skills (person_id, skills_id) VALUES (1, 5);
 INSERT INTO person_skills (person_id, skills_id) VALUES (1, 6);
 INSERT INTO person_skills (person_id, skills_id) VALUES (1, 7);
 
+INSERT INTO person_skills (person_id, skills_id) VALUES (2, 2);
 INSERT INTO person_skills (person_id, skills_id) VALUES (2, 5);
 INSERT INTO person_skills (person_id, skills_id) VALUES (2, 6);
 INSERT INTO person_skills (person_id, skills_id) VALUES (2, 7);
 INSERT INTO person_skills (person_id, skills_id) VALUES (2, 8);
 INSERT INTO person_skills (person_id, skills_id) VALUES (2, 9);
 
+INSERT INTO person_skills (person_id, skills_id) VALUES (4, 2);
 INSERT INTO person_skills (person_id, skills_id) VALUES (4, 5);
 INSERT INTO person_skills (person_id, skills_id) VALUES (4, 6);
 INSERT INTO person_skills (person_id, skills_id) VALUES (4, 7);
-INSERT INTO person_skills (person_id, skills_id) VALUES (4, 5);
 
+INSERT INTO person_skills (person_id, skills_id) VALUES (3, 2);
 INSERT INTO person_skills (person_id, skills_id) VALUES (3, 8);
 INSERT INTO person_skills (person_id, skills_id) VALUES (3, 9);
