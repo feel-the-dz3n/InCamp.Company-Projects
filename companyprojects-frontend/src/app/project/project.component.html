@@ -1,1 +1,8 @@
-<p>project works!</p>
+<h2 *ngIf="isLoading">Loading</h2>
+<h2>{{project?.name}}</h2>
+<p style="text-align: center;">
+  by <a [routerLink]="['/company', project?.company?.id]">{{project?.company?.name}}</a></p>
+<h3>People</h3>
+<ul>
+  <li *ngFor="let person of getPeople()"><a [routerLink]="['/person', person.id]">{{person.name}}</a></li>
+</ul>

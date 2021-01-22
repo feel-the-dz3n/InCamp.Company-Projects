@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {switchMap} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {ProjectService} from "../project.service";
@@ -14,7 +14,8 @@ export class ProjectComponent implements OnInit {
   project: Project | undefined;
 
   constructor(private route: ActivatedRoute,
-              private projectService: ProjectService) { }
+              private projectService: ProjectService) {
+  }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -32,4 +33,7 @@ export class ProjectComponent implements OnInit {
         });
   }
 
+  getPeople() {
+    return this.project && this.project.people ? this.project.people : [];
+  }
 }

@@ -7,5 +7,5 @@ export interface Project {
   name: string | undefined;
   company: Company | undefined;
   technologies: Technology[] | undefined;
-  people: Person | undefined;
+  people: Person[] | undefined;
 }
