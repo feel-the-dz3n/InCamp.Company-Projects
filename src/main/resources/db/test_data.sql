@@ -33,6 +33,10 @@ INSERT INTO project_people (project_id, people_id) VALUES(2, 1);
 INSERT INTO project_people (project_id, people_id) VALUES(2, 2);
 INSERT INTO project_technologies (project_id, technologies_id) VALUES (2, 2);
 
+INSERT INTO project VALUES(3, 'Ubuntu OS', 1);
+INSERT INTO project_technologies (project_id, technologies_id) VALUES (3, 8);
+INSERT INTO project_technologies (project_id, technologies_id) VALUES (3, 9);
+
 INSERT INTO contribution (id, person_id, project_id, start_date, end_date)
 VALUES(1, 1, 1, '2020-12-01 00:00:01', '2021-01-01 00:00:01');
 
@@ -53,6 +57,8 @@ INSERT INTO person_skills (person_id, skills_id) VALUES (1, 7);
 INSERT INTO person_skills (person_id, skills_id) VALUES (2, 5);
 INSERT INTO person_skills (person_id, skills_id) VALUES (2, 6);
 INSERT INTO person_skills (person_id, skills_id) VALUES (2, 7);
+INSERT INTO person_skills (person_id, skills_id) VALUES (2, 8);
+INSERT INTO person_skills (person_id, skills_id) VALUES (2, 9);
 
 INSERT INTO person_skills (person_id, skills_id) VALUES (4, 5);
 INSERT INTO person_skills (person_id, skills_id) VALUES (4, 6);
