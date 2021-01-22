@@ -7,13 +7,15 @@ import { CompaniesComponent } from './companies/companies.component';
 import {HttpClientModule} from "@angular/common/http";
 import { CompanyComponent } from './company/company.component';
 import { PersonComponent } from './person/person.component';
+import { ProjectComponent } from './project/project.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompaniesComponent,
     CompanyComponent,
-    PersonComponent
+    PersonComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,
