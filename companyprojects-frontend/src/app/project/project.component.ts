@@ -3,6 +3,7 @@ import {switchMap} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {ProjectService} from "../project.service";
 import {Project} from "../project.model";
+import {Person} from "../person.model";
 
 @Component({
   selector: 'app-project',
@@ -12,6 +13,7 @@ import {Project} from "../project.model";
 export class ProjectComponent implements OnInit {
   isLoading: boolean = false;
   project: Project | undefined;
+  candidates: Person[] = [];
 
   constructor(private route: ActivatedRoute,
               private projectService: ProjectService) {

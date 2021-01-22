@@ -4,5 +4,15 @@
   by <a [routerLink]="['/company', project?.company?.id]">{{project?.company?.name}}</a></p>
 <h3>People</h3>
 <ul>
-  <li *ngFor="let person of getPeople()"><a [routerLink]="['/person', person.id]">{{person.name}}</a></li>
+  <li *ngFor="let person of getPeople()">
+    <a [routerLink]="['/person', person.id]">{{person.name}}</a></li>
+</ul>
+<h3>Project needs more people? Suggestions:</h3>
+<ul>
+  <li *ngFor="let candidate of candidates">
+    <p><a [routerLink]="['/person', candidate.id]">{{candidate.name}}</a></p>
+    <p *ngFor="let skill of candidate.skills" style="display: inline; margin: 8px 0; padding: 0;">
+      {{skill.name}}
+    </p>
+  </li>
 </ul>
