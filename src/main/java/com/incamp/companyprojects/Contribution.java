@@ -17,10 +17,10 @@ public class Contribution {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contrib-id-gen")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Project project;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Person person;
 
     @JoinTable(name = "contrib_technologies",
