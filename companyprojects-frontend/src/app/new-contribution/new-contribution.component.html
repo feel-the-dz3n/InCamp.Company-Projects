@@ -1,0 +1,13 @@
+<form>
+  <h2>New Contribution</h2>
+
+  <section class="skills">
+    <h3>Technologies</h3>
+    <div class="skill" *ngFor="let selectableTech of technologies">
+      <input type="checkbox" name="skill-cb" [(ngModel)]="selectableTech.selected">
+      <label>{{selectableTech.technology?.name}}</label>
+    </div>
+  </section>
+
+  <button type="submit">Submit</button>
+</form>
