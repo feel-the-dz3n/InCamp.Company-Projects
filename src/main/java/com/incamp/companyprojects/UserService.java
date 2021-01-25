@@ -28,6 +28,6 @@ public class UserService {
     }
 
     public boolean isUserManaging(User user, Integer projectId) {
-        return user.getManaging().contains(projectId);
+        return user != null && user.getManaging().contains(projectId);
     }
 }
