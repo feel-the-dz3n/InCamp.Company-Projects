@@ -23,13 +23,17 @@ public class CandidatesService {
         var project = projectService.get(projectId).get();
         return collectCandidates(
                 List.of(project.getCompany()),
-                project.getTechnologies());
+                project.getTechnologies(),
+                project);
     }
 
     public Iterable<Person> collectCandidates(
             Collection<Company> membership,
-            Collection<Technology> techRequirements) {
+            Collection<Technology> techRequirements,
+            Project excludeProjectPeople) {
         return StreamSupport.stream(personRepository.findAll().spliterator(), false)
+                .filter(person -> excludeProjectPeople == null
+                        || !excludeProjectPeople.getPeople().contains(person))
                 .filter(person -> person.getMembership().containsAll(membership))
                 .filter(person -> person.getSkills().containsAll(techRequirements))
                 .collect(Collectors.toList());
