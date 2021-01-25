@@ -32,10 +32,10 @@ public class PeopleController {
     }
 
     @GetMapping("/{personId}/contributions")
-    public ResponseEntity<Iterable<ContributionProjectDTO>> getContributions(
+    public ResponseEntity<Iterable<Contribution>> getContributions(
             @PathVariable Integer personId) {
         return new ResponseEntity(
-                contribRepository.findContributionProjectByPerson(personId),
+                contribRepository.findByPerson(personId),
                 HttpStatus.OK);
     }
 }
