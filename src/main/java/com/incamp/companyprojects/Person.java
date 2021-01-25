@@ -17,6 +17,13 @@ public class Person {
     private Integer id;
     private String name;
 
+    @JoinTable(name = "person_membership",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "company_id"))
+    @ManyToMany(fetch = FetchType.LAZY)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Company> membership;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Technology> skills;
@@ -43,6 +50,14 @@ public class Person {
 
     public void setSkills(List<Technology> skills) {
         this.skills = skills;
+    }
+
+    public List<Company> getMembership() {
+        return membership;
+    }
+
+    public void setMembership(List<Company> membership) {
+        this.membership = membership;
     }
 }
 
