@@ -3,7 +3,9 @@ package com.incamp.companyprojects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -18,14 +20,18 @@ public class CandidatesService {
     private PersonRepository personRepository;
 
     public Iterable<Person> collectCandidates(Integer projectId) {
+        var project = projectService.get(projectId).get();
         return collectCandidates(
-                projectService.get(projectId).get().getTechnologies()
-        );
+                List.of(project.getCompany()),
+                project.getTechnologies());
     }
 
-    public Iterable<Person> collectCandidates(Collection<Technology> reqs) {
+    public Iterable<Person> collectCandidates(
+            Collection<Company> membership,
+            Collection<Technology> techRequirements) {
         return StreamSupport.stream(personRepository.findAll().spliterator(), false)
-                .filter(person -> person.getSkills().containsAll(reqs))
+                .filter(person -> person.getMembership().containsAll(membership))
+                .filter(person -> person.getSkills().containsAll(techRequirements))
                 .collect(Collectors.toList());
     }
 }
