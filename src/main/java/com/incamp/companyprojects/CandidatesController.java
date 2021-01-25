@@ -12,16 +12,9 @@ public class CandidatesController {
     @Autowired
     private CandidatesService candidatesService;
 
-    @Autowired
-    private UserService userService;
-
     @GetMapping
     public ResponseEntity<Iterable<Person>> get(
-            @RequestHeader("Authorization") String token,
             @RequestParam Integer projectId) {
-        if (!userService.isUserManaging(token, projectId))
-            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
-
         return new ResponseEntity(candidatesService.collectCandidates(projectId), HttpStatus.OK);
     }
 }

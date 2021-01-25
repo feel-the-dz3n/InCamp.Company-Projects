@@ -10,32 +10,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/people")
 public class PeopleController {
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private PersonRepository personRepository;
 
     @Autowired
     private ContributionRepository contribRepository;
 
     @GetMapping
-    public ResponseEntity<Iterable<Person>> getAll(
-            @RequestHeader("Authorization") String token) {
-        if (userService.get(token) == null) {
-            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
-        }
-
+    public ResponseEntity<Iterable<Person>> getAll() {
         return new ResponseEntity(personRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{personId}")
     public ResponseEntity<Person> get(
-            @RequestHeader("Authorization") String token,
             @PathVariable Integer personId) {
-        if (userService.get(token) == null) {
-            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
-        }
-
         var optionalPerson = personRepository.findById(personId);
 
         if (optionalPerson.isPresent())
@@ -46,12 +33,7 @@ public class PeopleController {
 
     @GetMapping("/{personId}/contributions")
     public ResponseEntity<Iterable<ContributionProjectDTO>> getContributions(
-            @RequestHeader("Authorization") String token,
             @PathVariable Integer personId) {
-        if (userService.get(token) == null) {
-            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
-        }
-
         return new ResponseEntity(
                 contribRepository.findContributionProjectByPerson(personId),
                 HttpStatus.OK);
