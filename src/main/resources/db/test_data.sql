@@ -1,63 +1,134 @@
 TRUNCATE company, project, technology, project_technologies, project_people, person,
-    contribution, person_skills;
+    contribution, person_skills, person_membership;
 
-INSERT INTO company VALUES(1, 'InterLink inCamp');
+SELECT setval('technology_id_seq', 1, FALSE);
+SELECT setval('company_seq', 1, FALSE);
+SELECT setval('contrib_id_seq', 1, FALSE);
+SELECT setval('person_id_seq', 1, FALSE);
+SELECT setval('project_id_seq', 1, FALSE);
 
-INSERT INTO person VALUES(1, 'Yaroslav');
-INSERT INTO person VALUES(2, 'Rob');
-INSERT INTO person VALUES(3, 'Ben');
-INSERT INTO person VALUES(4, 'Bob');
+INSERT INTO technology
+VALUES (nextval('technology_id_seq'), 'C#');
+INSERT INTO technology
+VALUES (nextval('technology_id_seq'), 'Java');
+INSERT INTO technology
+VALUES (nextval('technology_id_seq'), 'Hibernate');
+INSERT INTO technology
+VALUES (nextval('technology_id_seq'), 'Spring');
+INSERT INTO technology
+VALUES (nextval('technology_id_seq'), 'HTML5');
+INSERT INTO technology
+VALUES (nextval('technology_id_seq'), 'JavaScript');
+INSERT INTO technology
+VALUES (nextval('technology_id_seq'), 'Angular');
+INSERT INTO technology
+VALUES (nextval('technology_id_seq'), 'C++');
+INSERT INTO technology
+VALUES (nextval('technology_id_seq'), 'Assembly');
 
-INSERT INTO technology VALUES(1, 'C#');
-INSERT INTO technology VALUES(2, 'Java');
-INSERT INTO technology VALUES(3, 'Hibernate');
-INSERT INTO technology VALUES(4, 'Spring');
-INSERT INTO technology VALUES(5, 'HTML5');
-INSERT INTO technology VALUES(6, 'JavaScript');
-INSERT INTO technology VALUES(7, 'Angular');
-INSERT INTO technology VALUES(8, 'C++');
-INSERT INTO technology VALUES(9, 'Assembly');
+INSERT INTO company
+VALUES (nextval('company_seq'), 'InterLink inCamp');
 
-INSERT INTO project VALUES(1, 'To-Do List', 1);
-INSERT INTO project_people (project_id, people_id) VALUES(1, 1);
-INSERT INTO project_people (project_id, people_id) VALUES(1, 4);
-INSERT INTO project_technologies (project_id, technologies_id) VALUES (1, 2);
-INSERT INTO project_technologies (project_id, technologies_id) VALUES (1, 3);
-INSERT INTO project_technologies (project_id, technologies_id) VALUES (1, 4);
-INSERT INTO project_technologies (project_id, technologies_id) VALUES (1, 5);
-INSERT INTO project_technologies (project_id, technologies_id) VALUES (1, 6);
-INSERT INTO project_technologies (project_id, technologies_id) VALUES (1, 7);
+INSERT INTO person
+VALUES (nextval('person_id_seq'), 'Yaroslav');
+INSERT INTO person_membership (person_id, company_id)
+VALUES (1, 1);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (1, 1);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (1, 2);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (1, 3);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (1, 4);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (1, 5);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (1, 6);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (1, 7);
 
-INSERT INTO project VALUES(2, 'TicTacToe', 1);
-INSERT INTO project_people (project_id, people_id) VALUES(2, 1);
-INSERT INTO project_people (project_id, people_id) VALUES(2, 2);
-INSERT INTO project_technologies (project_id, technologies_id) VALUES (2, 2);
+INSERT INTO person
+VALUES (nextval('person_id_seq'), 'Rob');
+INSERT INTO person_membership (person_id, company_id)
+VALUES (2, 1);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (2, 2);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (2, 5);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (2, 6);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (2, 7);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (2, 8);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (2, 9);
+
+INSERT INTO person
+VALUES (nextval('person_id_seq'), 'Ben');
+INSERT INTO person_membership (person_id, company_id)
+VALUES (3, 1);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (3, 2);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (3, 8);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (3, 9);
+
+INSERT INTO person
+VALUES (nextval('person_id_seq'), 'Bob');
+INSERT INTO person_membership (person_id, company_id)
+VALUES (4, 1);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (4, 2);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (4, 5);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (4, 6);
+INSERT INTO person_skills (person_id, skills_id)
+VALUES (4, 7);
+
+INSERT INTO project
+VALUES (nextval('project_id_seq'), 'To-Do List', 1);
+INSERT INTO project_people (project_id, people_id)
+VALUES (1, 1);
+INSERT INTO project_people (project_id, people_id)
+VALUES (1, 4);
+INSERT INTO project_technologies (project_id, technologies_id)
+VALUES (1, 2);
+INSERT INTO project_technologies (project_id, technologies_id)
+VALUES (1, 3);
+INSERT INTO project_technologies (project_id, technologies_id)
+VALUES (1, 4);
+INSERT INTO project_technologies (project_id, technologies_id)
+VALUES (1, 5);
+INSERT INTO project_technologies (project_id, technologies_id)
+VALUES (1, 6);
+INSERT INTO project_technologies (project_id, technologies_id)
+VALUES (1, 7);
+
+INSERT INTO project
+VALUES (nextval('project_id_seq'), 'TicTacToe', 1);
+INSERT INTO project_people (project_id, people_id)
+VALUES (2, 1);
+INSERT INTO project_people (project_id, people_id)
+VALUES (2, 2);
+INSERT INTO project_technologies (project_id, technologies_id)
+VALUES (2, 2);
+
+INSERT INTO project
+VALUES (nextval('project_id_seq'), 'Ubuntu OS', 1);
+INSERT INTO project_technologies (project_id, technologies_id)
+VALUES (3, 8);
+INSERT INTO project_technologies (project_id, technologies_id)
+VALUES (3, 9);
 
 INSERT INTO contribution (id, person_id, project_id, start_date, end_date)
-VALUES(1, 1, 1, '2020-12-01 00:00:01', '2021-01-01 00:00:01');
+VALUES (nextval('contrib_id_seq'), 1, 1, '2020-12-01 00:00:01', '2021-01-01 00:00:01');
 
 INSERT INTO contribution (id, person_id, project_id, start_date, end_date)
-VALUES(2, 1, 2, '2020-12-01 00:00:01', '2021-01-01 00:00:01');
+VALUES (nextval('contrib_id_seq'), 1, 2, '2020-12-01 00:00:01', '2021-01-01 00:00:01');
 
 INSERT INTO contribution (id, person_id, project_id, start_date, end_date)
-VALUES(3, 2, 2, '2018-04-01 00:00:01', '2020-01-01 00:00:01');
-
-INSERT INTO person_skills (person_id, skills_id) VALUES (1, 1);
-INSERT INTO person_skills (person_id, skills_id) VALUES (1, 2);
-INSERT INTO person_skills (person_id, skills_id) VALUES (1, 3);
-INSERT INTO person_skills (person_id, skills_id) VALUES (1, 4);
-INSERT INTO person_skills (person_id, skills_id) VALUES (1, 5);
-INSERT INTO person_skills (person_id, skills_id) VALUES (1, 6);
-INSERT INTO person_skills (person_id, skills_id) VALUES (1, 7);
-
-INSERT INTO person_skills (person_id, skills_id) VALUES (2, 5);
-INSERT INTO person_skills (person_id, skills_id) VALUES (2, 6);
-INSERT INTO person_skills (person_id, skills_id) VALUES (2, 7);
-
-INSERT INTO person_skills (person_id, skills_id) VALUES (4, 5);
-INSERT INTO person_skills (person_id, skills_id) VALUES (4, 6);
-INSERT INTO person_skills (person_id, skills_id) VALUES (4, 7);
-INSERT INTO person_skills (person_id, skills_id) VALUES (4, 5);
-
-INSERT INTO person_skills (person_id, skills_id) VALUES (3, 8);
-INSERT INTO person_skills (person_id, skills_id) VALUES (3, 9);
+VALUES (nextval('contrib_id_seq'), 2, 2, '2018-04-01 00:00:01', '2020-01-01 00:00:01');

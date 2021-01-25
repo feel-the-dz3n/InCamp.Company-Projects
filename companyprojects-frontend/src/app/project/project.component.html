@@ -2,7 +2,22 @@
 <h2>{{project?.name}}</h2>
 <p style="text-align: center;">
   by <a [routerLink]="['/company', project?.company?.id]">{{project?.company?.name}}</a></p>
+<h3>Technologies</h3>
+<p *ngFor="let skill of project?.technologies" style="display: inline; margin: 0; padding: 16px;">
+  {{skill.name}}
+</p>
 <h3>People</h3>
 <ul>
-  <li *ngFor="let person of getPeople()"><a [routerLink]="['/person', person.id]">{{person.name}}</a></li>
+  <li *ngIf="getPeople().length == 0">No People :(</li>
+  <li *ngFor="let person of getPeople()">
+    <a [routerLink]="['/person', person.id]">{{person.name}}</a></li>
 </ul>
+<h3 style="padding-top: 16px;">Project needs more people?</h3>
+<h4 style="text-align: center;">These people might help you</h4>
+<div *ngFor="let candidate of candidates" class="candidate">
+  <h4><a [routerLink]="['/person', candidate.id]">{{candidate.name}}</a></h4>
+  <p>Experience:</p>
+  <p *ngFor="let skill of candidate.skills" style="display: inline; margin: 0; padding: 16px;">
+    {{skill.name}}
+  </p>
+</div>
