@@ -9,6 +9,8 @@ import { CompanyComponent } from './company/company.component';
 import { PersonComponent } from './person/person.component';
 import { ProjectComponent } from './project/project.component';
 import {TokenInterceptor} from "./token-interceptor";
+import { NewContributionComponent } from './new-contribution/new-contribution.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,12 +18,14 @@ import {TokenInterceptor} from "./token-interceptor";
     CompaniesComponent,
     CompanyComponent,
     PersonComponent,
-    ProjectComponent
+    ProjectComponent,
+    NewContributionComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     {
