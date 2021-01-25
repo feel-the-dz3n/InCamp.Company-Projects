@@ -10,27 +10,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/company")
 public class CompanyController {
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private CompanyService companyService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Company>> getCompanies(
-            @RequestHeader("Authorization") String token) {
-        if (userService.get(token) == null)
-            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
-
+    public ResponseEntity<Iterable<Company>> getCompanies() {
         return new ResponseEntity(companyService.getCompanies(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Company> getCompany(
-            @RequestHeader("Authorization") String token,
             @PathVariable Integer id) {
-        if (userService.get(token) == null)
-            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
-
         var optionalCompany = companyService.getCompany(id);
 
         if (optionalCompany.isPresent())
@@ -41,11 +30,7 @@ public class CompanyController {
 
     @GetMapping("/{id}/projects")
     public ResponseEntity<Iterable<CompanyProjectDTO>> getCompanyProjects(
-            @RequestHeader("Authorization") String token,
             @PathVariable Integer id) {
-        if (userService.get(token) == null)
-            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
-
         return new ResponseEntity(companyService.getCompanyProjects(id), HttpStatus.OK);
     }
 }
