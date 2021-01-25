@@ -23,6 +23,10 @@ public class UserService {
         return null;
     }
 
+    public boolean isUserManaging(String token, Integer projectId) {
+        return isUserManaging(get(token), projectId);
+    }
+
     public boolean isUserManaging(User user, Integer projectId) {
         return user.getManaging().contains(projectId);
     }
