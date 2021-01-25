@@ -1,6 +1,12 @@
 <form>
   <h2>New Contribution</h2>
 
+  <section class="project">
+    <select>
+      <option *ngFor="let project of projects">{{project.name}}</option>
+    </select>
+  </section>
+
   <section class="skills">
     <h3>Technologies</h3>
     <div class="skill" *ngFor="let selectableTech of technologies">
