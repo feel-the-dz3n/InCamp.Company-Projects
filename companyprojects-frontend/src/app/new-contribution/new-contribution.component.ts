@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {switchMap} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {PeopleService} from "../people.service";
@@ -8,6 +8,7 @@ import {SelectableTechnology} from "../selectable-technology.model";
 import {SkillsService} from "../skills.service";
 import {Project} from "../project.model";
 import {CompanyService} from "../company.service";
+import {CandidatesService} from "../candidates.service";
 
 @Component({
   selector: 'app-new-contribution',
@@ -15,13 +16,14 @@ import {CompanyService} from "../company.service";
   styleUrls: ['./new-contribution.component.scss']
 })
 export class NewContributionComponent implements OnInit {
-  person?: Person;
+  @Input() project?: Project;
   technologies?: SelectableTechnology[];
-  projects: Project[] = [];
+  people: Person[] = [];
 
   constructor(private route: ActivatedRoute,
               private peopleService: PeopleService,
-              private skillsService: SkillsService) {
+              private skillsService: SkillsService,
+              private candidatesService: CandidatesService) {
   }
 
   ngOnInit(): void {
@@ -35,17 +37,14 @@ export class NewContributionComponent implements OnInit {
       }
     );
 
-    this.route.paramMap.pipe(switchMap(p => this.peopleService.get(p.get('id')))).subscribe(
-      person => {
-        this.person = person;
-      },
-      e => {
-        console.log(e);
-      });
-
-    this.route.paramMap.pipe(switchMap(p => this.peopleService.getMembershipProject(p.get('id')))).subscribe(
-      projects => {
-        this.projects = projects;
+    this.candidatesService.get(
+      this.project?.id,
+      true,
+      true,
+      false,
+      true).subscribe(
+      people => {
+        this.people = people;
       },
       e => {
         console.log(e);

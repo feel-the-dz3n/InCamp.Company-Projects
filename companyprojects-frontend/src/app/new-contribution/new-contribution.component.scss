@@ -25,4 +25,5 @@ input[type="input"] {
 
 button[type="submit"] {
   @extend .btn, .btn-primary;
+  width: 100%;
 }

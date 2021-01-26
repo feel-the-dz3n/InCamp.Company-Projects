@@ -20,7 +20,7 @@
 <h3>Contributors</h3>
 <button *ngIf="!addingContrib" class="add-contrib-btn" (click)="addingContrib = true">Add Contribution</button>
 <div class="add-contrib" *ngIf="addingContrib">
-  <app-new-contribution></app-new-contribution>
+  <app-new-contribution [project]="project"></app-new-contribution>
   <button class="cancel-contrib-btn" (click)="addingContrib = false">Cancel</button>
 </div>
 <ul *ngIf="!addingContrib">

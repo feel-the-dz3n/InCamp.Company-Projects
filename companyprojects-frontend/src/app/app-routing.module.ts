@@ -10,7 +10,6 @@ const routes: Routes = [
   { path: 'companies', component: CompaniesComponent },
   { path: 'company/:id', component: CompanyComponent },
   { path: 'person/:id', component: PersonComponent },
-  { path: 'person/:id/create-contribution', component: NewContributionComponent },
   { path: 'project/:id', component: ProjectComponent },
   { path: '', redirectTo: '/companies', pathMatch: 'full' },
 ];
