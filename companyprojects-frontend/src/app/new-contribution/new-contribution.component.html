@@ -1,9 +1,9 @@
-<form (submit)="submit()">
+<form ngNativeValidate (submit)="submit()">
   <h3>New Contribution</h3>
 
   <section class="person">
     <h4>Person</h4>
-    <select [(ngModel)]="person" name="person-selector">
+    <select [(ngModel)]="person" name="person-selector" required>
       <option *ngFor="let person of people" [ngValue]="person">{{person.name}}</option>
     </select>
   </section>
@@ -22,11 +22,11 @@
     <h4>Date</h4>
     <div class="date-row">
       <label>Start date</label>
-      <input type="datetime-local" [(ngModel)]="startDate" name="startDate">
+      <input type="datetime-local" [(ngModel)]="startDate" name="startDate" required>
     </div>
     <div class="date-row">
       <label>End date</label>
-      <input type="datetime-local" [(ngModel)]="endDate" name="endDate">
+      <input type="datetime-local" [(ngModel)]="endDate" name="endDate" required>
     </div>
   </section>
 

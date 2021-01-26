@@ -33,7 +33,7 @@ select {
   @extend .form-control;
 }
 
-input[type="input"] {
+input[type="input"], input[type="datettime-local"] {
   @extend .form-control;
 }
 
