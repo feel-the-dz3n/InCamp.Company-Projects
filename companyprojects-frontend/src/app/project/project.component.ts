@@ -89,6 +89,29 @@ export class ProjectComponent implements OnInit {
       });
   }
 
+  formatDateDigit(num: any) {
+    if ((num + '').length <= 1) {
+      return '0' + num;
+    }
+    else {
+      return num;
+    }
+  }
+
+  getFormattedDate(date: Date) {
+    let day = this.formatDateDigit(date.getDate());
+    let month = this.formatDateDigit(date.getMonth() + 1);
+    let year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+  }
+
+  getDatePeriod(startDateISO: any, endDateISO: any) {
+    let startDate = new Date(startDateISO);
+    let endDate = new Date(endDateISO);
+
+    return `${this.getFormattedDate(startDate)} - ${this.getFormattedDate(endDate)}`;
+  }
+
   addContribution(contrib: Contribution) {
     this.contribService.add(contrib).subscribe(
       r => {
