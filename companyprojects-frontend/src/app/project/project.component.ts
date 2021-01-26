@@ -16,7 +16,7 @@ export class ProjectComponent implements OnInit {
   isLoading: boolean = false;
   project: Project | undefined;
   candidates: Person[] = [];
-  contributors: Contribution[] = [];
+  contributions: Contribution[] = [];
 
   constructor(private route: ActivatedRoute,
               private projectService: ProjectService,
@@ -53,7 +53,7 @@ export class ProjectComponent implements OnInit {
     this.route.paramMap.pipe(switchMap(p => this.projectService.getContributions(p.get('id'))))
       .subscribe(
         r => {
-          this.contributors = r;
+          this.contributions = r;
           this.isLoading = false;
         },
         e => {

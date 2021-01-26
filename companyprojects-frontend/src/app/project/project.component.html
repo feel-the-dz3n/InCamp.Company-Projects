@@ -20,8 +20,8 @@
 <h3>Contributors</h3>
 <button class="add-contrib-btn">Add Contribution</button>
 <ul>
-  <li *ngIf="contributors.length == 0">No Contributors :(</li>
-  <li *ngFor="let contrib of contributors">
+  <li *ngIf="contributions.length == 0">No Contributors :(</li>
+  <li *ngFor="let contrib of contributions">
     <a [routerLink]="['/person', contrib.person.id]">{{contrib.person.name}}</a></li>
 </ul>
 
