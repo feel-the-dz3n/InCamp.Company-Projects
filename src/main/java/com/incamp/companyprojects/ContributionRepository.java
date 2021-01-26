@@ -16,6 +16,26 @@ public interface ContributionRepository extends CrudRepository<Contribution, Int
             "select " +
             "* " +
             "from contribution as c " +
+            "where c.person_id = :personId " +
+            "and c.project_id = :projectId", nativeQuery = true)
+    Iterable<Contribution> findByPersonAndProject(
+            @Param("personId") Integer personId,
+            @Param("projectId") Integer projectId);
+
+    @Query(value = "" +
+            "select " +
+            "count(*) " +
+            "from contribution as c " +
+            "where c.person_id = :personId " +
+            "and c.project_id = :projectId", nativeQuery = true)
+    Long countByPersonAndProject(
+            @Param("personId") Integer personId,
+            @Param("projectId") Integer projectId);
+
+    @Query(value = "" +
+            "select " +
+            "* " +
+            "from contribution as c " +
             "where c.project_id = :projectId", nativeQuery = true)
     Iterable<Contribution> findByProject(@Param("projectId") Integer projectId);
 }
