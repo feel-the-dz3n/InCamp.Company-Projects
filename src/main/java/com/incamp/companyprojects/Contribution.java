@@ -4,6 +4,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,9 +19,11 @@ public class Contribution {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @NotNull
     private Project project;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @NotNull
     private Person person;
 
     @JoinTable(name = "contrib_technologies",
@@ -30,7 +33,10 @@ public class Contribution {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Technology> technologies;
 
+    @NotNull
     private LocalDateTime startDate;
+
+    @NotNull
     private LocalDateTime endDate;
 
     public Integer getId() {
