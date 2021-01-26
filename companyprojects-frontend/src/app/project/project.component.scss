@@ -1,3 +1,5 @@
+@import '../../styles.scss';
+
 .candidate {
   display: block;
   border-radius: 5px;
@@ -18,6 +20,12 @@ h3 {
 .technologies {
   display: flex;
   flex-flow: row wrap;
+}
+
+.add-contrib-btn {
+  @extend .btn, .btn-light;
+  width: 100%;
+  margin-bottom: 16px;
 }
 
 .technology {

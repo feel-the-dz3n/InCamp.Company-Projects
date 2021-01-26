@@ -5,6 +5,7 @@ import {ProjectService} from "../project.service";
 import {Project} from "../project.model";
 import {Person} from "../person.model";
 import {CandidatesService} from "../candidates.service";
+import {Contribution} from "../contribution.model";
 
 @Component({
   selector: 'app-project',
@@ -15,6 +16,7 @@ export class ProjectComponent implements OnInit {
   isLoading: boolean = false;
   project: Project | undefined;
   candidates: Person[] = [];
+  contributors: Contribution[] = [];
 
   constructor(private route: ActivatedRoute,
               private projectService: ProjectService,
@@ -44,6 +46,18 @@ export class ProjectComponent implements OnInit {
         },
         e => {
           alert("Failed to fetch candidates");
+          console.log(e);
+          this.isLoading = false;
+        });
+
+    this.route.paramMap.pipe(switchMap(p => this.projectService.getContributions(p.get('id'))))
+      .subscribe(
+        r => {
+          this.contributors = r;
+          this.isLoading = false;
+        },
+        e => {
+          alert("Failed to fetch contributors");
           console.log(e);
           this.isLoading = false;
         });
