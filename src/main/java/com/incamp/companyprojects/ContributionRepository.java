@@ -11,4 +11,11 @@ public interface ContributionRepository extends CrudRepository<Contribution, Int
             "from contribution as c " +
             "where c.person_id = :personId", nativeQuery = true)
     Iterable<Contribution> findByPerson(@Param("personId") Integer personId);
+
+    @Query(value = "" +
+            "select " +
+            "* " +
+            "from contribution as c " +
+            "where c.project_id = :projectId", nativeQuery = true)
+    Iterable<Contribution> findByProject(@Param("projectId") Integer projectId);
 }

@@ -12,6 +12,9 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private ContributionRepository contribRepository;
+
     @GetMapping
     public ResponseEntity<Iterable<Project>> getAll() {
         return new ResponseEntity(projectService.getAll(), HttpStatus.OK);
@@ -22,5 +25,13 @@ public class ProjectController {
             @PathVariable int projectId) {
         var optionalProject = projectService.get(projectId);
         return new ResponseEntity(optionalProject.get(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{projectId}/contributions")
+    public ResponseEntity<Project> getContributions(
+            @PathVariable int projectId) {
+        return new ResponseEntity(
+                contribRepository.findByProject(projectId),
+                HttpStatus.OK);
     }
 }
