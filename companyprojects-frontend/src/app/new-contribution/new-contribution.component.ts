@@ -40,7 +40,7 @@ export class NewContributionComponent implements OnInit {
 
     this.candidatesService.get(
       this.project?.id,
-      true,
+      false,
       true,
       false,
       true).subscribe(
