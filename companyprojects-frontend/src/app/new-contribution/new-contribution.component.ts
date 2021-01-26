@@ -34,7 +34,9 @@ export class NewContributionComponent implements OnInit {
   ngOnInit(): void {
     this.skillsService.get().subscribe(
       r => {
-        this.technologies = r.map(t => new SelectableTechnology(t));
+        this.technologies = r.map(technology => new SelectableTechnology(
+          this.isSkillUsed(technology),
+          technology));
       },
       e => {
         alert('Failed to fetch skills');
@@ -54,6 +56,19 @@ export class NewContributionComponent implements OnInit {
       e => {
         console.log(e);
       });
+  }
+
+  isSkillUsed(skill: Technology): boolean {
+    if (this.project) {
+      if (this.project.technologies) {
+        for (let projectSkill of this.project.technologies) {
+          if (projectSkill.id == skill.id) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
   }
 
   submit() {

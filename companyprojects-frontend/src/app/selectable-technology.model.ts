@@ -1,10 +1,12 @@
 import {Technology} from "./technology.model";
 
 export class SelectableTechnology {
-  selected: boolean = false;
+  selected: Boolean = false;
   technology: Technology;
 
-  constructor(technology: Technology) {
+  constructor(selected: Boolean | undefined, technology: Technology) {
     this.technology = technology;
+    if (selected)
+      this.selected = selected;
   }
 }

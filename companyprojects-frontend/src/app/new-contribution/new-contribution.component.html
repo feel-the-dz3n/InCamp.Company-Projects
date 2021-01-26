@@ -11,7 +11,9 @@
   <section class="skills">
     <h4>Technologies</h4>
     <div class="skill" *ngFor="let selectableTech of technologies">
-      <input type="checkbox" name="skill-cb" [(ngModel)]="selectableTech.selected">
+      <input type="checkbox" name="skill-cb"
+             [checked]="selectableTech.selected"
+             (change)="selectableTech.selected = !selectableTech.selected">
       <label>{{selectableTech.technology?.name}}</label>
     </div>
   </section>
