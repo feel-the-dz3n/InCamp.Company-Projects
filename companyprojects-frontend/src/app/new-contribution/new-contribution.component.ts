@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {switchMap} from "rxjs/operators";
+import {filter, switchMap} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {PeopleService} from "../people.service";
 import {Person} from "../person.model";
@@ -9,6 +9,7 @@ import {SkillsService} from "../skills.service";
 import {Project} from "../project.model";
 import {CompanyService} from "../company.service";
 import {CandidatesService} from "../candidates.service";
+import {Contribution} from "../contribution.model";
 
 @Component({
   selector: 'app-new-contribution',
@@ -18,8 +19,11 @@ import {CandidatesService} from "../candidates.service";
 export class NewContributionComponent implements OnInit {
   @Output() submitContrib = new EventEmitter();
   @Input() project?: Project;
-  technologies?: SelectableTechnology[];
+  technologies: SelectableTechnology[] = [];
   people: Person[] = [];
+  startDate?: string;
+  endDate?: string;
+  person?: Person;
 
   constructor(private route: ActivatedRoute,
               private peopleService: PeopleService,
@@ -53,8 +57,14 @@ export class NewContributionComponent implements OnInit {
   }
 
   submit() {
-    // TODO
-    this.submitContrib.emit();
+    let contrib = new Contribution();
+    contrib.person = this.person;
+    contrib.project = this.project;
+    contrib.technologies =
+      this.technologies.filter(st => st.selected).map(st => st.technology);
+    contrib.startDate = this.startDate;
+    contrib.endDate = this.endDate;
+    this.submitContrib.emit(contrib);
   }
 
 }
