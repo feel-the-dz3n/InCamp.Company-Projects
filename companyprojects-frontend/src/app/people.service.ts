@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Person} from "./person.model";
 import {ContributionProject} from "./contribution-project.model";
 import {Project} from "./project.model";
+import {Contribution} from "./contribution.model";
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,6 @@ export class PeopleService {
   }
 
   getContributions(personId: any) {
-    return this.http.get<ContributionProject[]>(this.endpoint + `/${personId}/contributions`);
+    return this.http.get<Contribution[]>(this.endpoint + `/${personId}/contributions`);
   }
 }

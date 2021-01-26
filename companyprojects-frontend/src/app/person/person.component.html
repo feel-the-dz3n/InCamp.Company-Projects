@@ -10,7 +10,7 @@
 <ul>
   <li *ngIf="contributions.length == 0">No contributions</li>
   <li *ngFor="let c of contributions">
-    <p><a [routerLink]="['/project', c.projectId]">{{c.projectName}}</a></p>
+    <p><a [routerLink]="['/project', c.project.id]">{{c.project.name}}</a></p>
     <p>{{getDatePeriod(c.startDate, c.endDate)}}</p>
   </li>
 </ul>

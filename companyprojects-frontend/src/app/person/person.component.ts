@@ -5,6 +5,7 @@ import {switchMap} from "rxjs/operators";
 import {Person} from "../person.model";
 import {ContributionProject} from "../contribution-project.model";
 import {Technology} from "../technology.model";
+import {Contribution} from "../contribution.model";
 
 @Component({
   selector: 'app-person',
@@ -14,7 +15,7 @@ import {Technology} from "../technology.model";
 export class PersonComponent implements OnInit {
   isLoading: boolean = false;
   person: Person | undefined;
-  contributions: ContributionProject[] = [];
+  contributions: Contribution[] = [];
 
   constructor(private peopleService: PeopleService,
               private route: ActivatedRoute) {
