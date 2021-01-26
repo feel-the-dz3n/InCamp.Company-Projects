@@ -14,7 +14,18 @@ public class CandidatesController {
 
     @GetMapping
     public ResponseEntity<Iterable<Person>> get(
-            @RequestParam Integer projectId) {
-        return new ResponseEntity(candidatesService.collectCandidates(projectId), HttpStatus.OK);
+            @RequestParam Integer projectId,
+            @RequestParam boolean checkProjectMembership,
+            @RequestParam boolean checkCompanyMembership,
+            @RequestParam boolean checkSkills,
+            @RequestParam boolean noTargetProjectContrib) {
+        return new ResponseEntity(
+                candidatesService.collectCandidates(
+                        projectId,
+                        checkProjectMembership,
+                        checkCompanyMembership,
+                        checkSkills,
+                        noTargetProjectContrib),
+                HttpStatus.OK);
     }
 }

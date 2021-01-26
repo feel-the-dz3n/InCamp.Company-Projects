@@ -39,7 +39,12 @@ export class ProjectComponent implements OnInit {
           this.isLoading = false;
         });
 
-    this.route.paramMap.pipe(switchMap(p => this.candidatesService.getForProject(p.get('id'))))
+    this.route.paramMap.pipe(switchMap(p => this.candidatesService.get(
+      p.get('id'),
+      true,
+      true,
+      true,
+      false)))
       .subscribe(
         r => {
           this.candidates = r;

@@ -2,6 +2,7 @@ package com.incamp.companyprojects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.lang.reflect.Array;
 import java.util.Collection;
@@ -19,23 +20,48 @@ public class CandidatesService {
     @Autowired
     private PersonRepository personRepository;
 
-    public Iterable<Person> collectCandidates(Integer projectId) {
+    @Autowired
+    private ContributionRepository contribRepository;
+
+    public Iterable<Person> collectCandidates(
+            Integer projectId,
+            boolean checkProjectMembership,
+            boolean checkCompanyMembership,
+            boolean checkSkills,
+            boolean noTargetProjectContrib) {
         var project = projectService.get(projectId).get();
         return collectCandidates(
                 List.of(project.getCompany()),
                 project.getTechnologies(),
-                project);
+                project,
+                checkProjectMembership,
+                checkCompanyMembership,
+                checkSkills,
+                noTargetProjectContrib);
     }
 
     public Iterable<Person> collectCandidates(
             Collection<Company> membership,
             Collection<Technology> techRequirements,
-            Project excludeProjectPeople) {
+            Project targetProject,
+            boolean checkProjectMembership,
+            boolean checkCompanyMembership,
+            boolean checkSkills,
+            boolean noTargetProjectContrib) {
+
         return StreamSupport.stream(personRepository.findAll().spliterator(), false)
-                .filter(person -> excludeProjectPeople == null
-                        || !excludeProjectPeople.getPeople().contains(person))
-                .filter(person -> person.getMembership().containsAll(membership))
-                .filter(person -> person.getSkills().containsAll(techRequirements))
+                .filter(person -> !checkProjectMembership
+                        || targetProject == null
+                        || !targetProject.getPeople().contains(person))
+                .filter(person -> !checkCompanyMembership
+                        || person.getMembership().containsAll(membership))
+                .filter(person -> !checkSkills
+                        || person.getSkills().containsAll(techRequirements))
+                .filter(person -> !noTargetProjectContrib
+                        || targetProject == null
+                        || contribRepository.countByPersonAndProject(
+                                person.getId(),
+                                targetProject.getId()) == 0)
                 .collect(Collectors.toList());
     }
 }
