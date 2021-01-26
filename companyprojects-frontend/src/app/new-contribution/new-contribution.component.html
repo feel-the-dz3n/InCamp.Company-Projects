@@ -2,13 +2,14 @@
   <h3>New Contribution</h3>
 
   <section class="person">
+    <h4>Person</h4>
     <select [(ngModel)]="person" name="person-selector">
       <option *ngFor="let person of people" [ngValue]="person">{{person.name}}</option>
     </select>
   </section>
 
   <section class="skills">
-    <h3>Technologies</h3>
+    <h4>Technologies</h4>
     <div class="skill" *ngFor="let selectableTech of technologies">
       <input type="checkbox" name="skill-cb" [(ngModel)]="selectableTech.selected">
       <label>{{selectableTech.technology?.name}}</label>
@@ -16,6 +17,7 @@
   </section>
 
   <section class="dates">
+    <h4>Date</h4>
     <div class="date-row">
       <label>Start date</label>
       <input type="datetime-local" [(ngModel)]="startDate" name="startDate">

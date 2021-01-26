@@ -1,14 +1,28 @@
 @import '../../styles.scss';
 
-label {
-  margin-left: 8px;
+.skills {
+  .skill {
+    display: flex;
+    flex-flow: row;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    align-items: center;
+
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+    }
+
+    label {
+      padding: 0;
+      margin: 0 0 0 8px;
+    }
+  }
 }
 
-.skill {
-  display: flex;
-  flex-flow: row;
-  margin-top: 8px;
-  margin-bottom: 8px;
+h4 {
+  text-align: center;
+  padding-top: 8px;
 }
 
 input[type="checkbox"] {
@@ -26,4 +40,19 @@ input[type="input"] {
 button[type="submit"] {
   @extend .btn, .btn-primary;
   width: 100%;
+  marngi-top: 16px;
+}
+
+.date-row {
+  display: flex;
+  flex-flow: row;
+  margin: 8px auto;
+
+  label {
+    flex-basis: 25%;
+  }
+
+  input {
+    flex: 1;
+  }
 }
