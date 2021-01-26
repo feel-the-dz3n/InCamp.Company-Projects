@@ -18,8 +18,12 @@
 </ul>
 
 <h3>Contributors</h3>
-<button class="add-contrib-btn">Add Contribution</button>
-<ul>
+<button *ngIf="!addingContrib" class="add-contrib-btn" (click)="addingContrib = true">Add Contribution</button>
+<div class="add-contrib" *ngIf="addingContrib">
+  <app-new-contribution></app-new-contribution>
+  <button class="cancel-contrib-btn" (click)="addingContrib = false">Cancel</button>
+</div>
+<ul *ngIf="!addingContrib">
   <li *ngIf="contributions.length == 0">No Contributors :(</li>
   <li *ngFor="let contrib of contributions">
     <a [routerLink]="['/person', contrib.person.id]">{{contrib.person.name}}</a></li>

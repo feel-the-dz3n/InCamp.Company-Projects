@@ -17,6 +17,7 @@ export class ProjectComponent implements OnInit {
   project: Project | undefined;
   candidates: Person[] = [];
   contributions: Contribution[] = [];
+  addingContrib: boolean = false;
 
   constructor(private route: ActivatedRoute,
               private projectService: ProjectService,

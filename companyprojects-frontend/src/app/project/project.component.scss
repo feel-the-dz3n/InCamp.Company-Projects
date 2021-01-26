@@ -22,10 +22,24 @@ h3 {
   flex-flow: row wrap;
 }
 
+.add-contrib {
+  margin: 16px;
+  padding: 16px;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid #cecece;
+}
+
 .add-contrib-btn {
   @extend .btn, .btn-light;
   width: 100%;
   margin-bottom: 16px;
+}
+
+.cancel-contrib-btn {
+  @extend .btn, .btn-secondary;
+  width: 100%;
+  margin-top: 8px;
 }
 
 .technology {
