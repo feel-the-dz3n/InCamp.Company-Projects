@@ -13,7 +13,7 @@ export class ContributionService {
   }
 
   add(contrib: Contribution) {
-    return this.http.post(this.endpoint, contrib);
+    return this.http.post<Contribution>(this.endpoint, contrib);
   }
 
   delete(id: any) {
