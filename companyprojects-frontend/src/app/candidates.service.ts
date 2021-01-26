@@ -11,12 +11,6 @@ export class CandidatesService {
   constructor(private http: HttpClient) {
   }
 
-  /*ublic ResponseEntity<Iterable<Person>> get(
-    @RequestParam Integer projectId,
-  @RequestParam boolean checkProjectMembership,
-  @RequestParam boolean checkCompanyMembership,
-  @RequestParam boolean checkSkills,
-  @RequestParam boolean noTargetProjectContrib*/
   get(
     projectId: any,
     checkProjectMembership: boolean,
