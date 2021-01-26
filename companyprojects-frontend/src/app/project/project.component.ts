@@ -93,6 +93,7 @@ export class ProjectComponent implements OnInit {
     this.contribService.add(contrib).subscribe(
       r => {
         this.contributions.push(r);
+        this.addingContrib = false;
       },
       e => {
         alert('Failed to add contribution');
