@@ -78,4 +78,12 @@ public class Contribution {
     public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
+
+    public List<Technology> getTechnologies() {
+        return technologies;
+    }
+
+    public void setTechnologies(List<Technology> technologies) {
+        this.technologies = technologies;
+    }
 }
