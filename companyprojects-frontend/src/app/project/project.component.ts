@@ -72,4 +72,12 @@ export class ProjectComponent implements OnInit {
   getPeople() {
     return this.project && this.project.people ? this.project.people : [];
   }
+
+  removeContribution(contrib: Contribution) {
+    // TODO
+  }
+
+  addContribution(contrib: Contribution) {
+    // TODO
+  }
 }

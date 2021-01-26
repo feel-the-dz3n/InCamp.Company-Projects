@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {switchMap} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {PeopleService} from "../people.service";
@@ -16,6 +16,7 @@ import {CandidatesService} from "../candidates.service";
   styleUrls: ['./new-contribution.component.scss']
 })
 export class NewContributionComponent implements OnInit {
+  @Output() submitContrib = new EventEmitter();
   @Input() project?: Project;
   technologies?: SelectableTechnology[];
   people: Person[] = [];
@@ -49,6 +50,11 @@ export class NewContributionComponent implements OnInit {
       e => {
         console.log(e);
       });
+  }
+
+  submit() {
+    // TODO
+    this.submitContrib.emit();
   }
 
 }

@@ -20,13 +20,15 @@
 <h3>Contributors</h3>
 <button *ngIf="!addingContrib" class="add-contrib-btn" (click)="addingContrib = true">Add Contribution</button>
 <div class="add-contrib" *ngIf="addingContrib">
-  <app-new-contribution [project]="project"></app-new-contribution>
+  <app-new-contribution (submitContrib)="addContribution($event)" [project]="project"></app-new-contribution>
   <button class="cancel-contrib-btn" (click)="addingContrib = false">Cancel</button>
 </div>
 <ul *ngIf="!addingContrib">
   <li *ngIf="contributions.length == 0">No Contributors :(</li>
-  <li *ngFor="let contrib of contributions">
-    <a [routerLink]="['/person', contrib.person.id]">{{contrib.person.name}}</a></li>
+  <li *ngFor="let contrib of contributions" class="contribution">
+    <a [routerLink]="['/person', contrib.person.id]">{{contrib.person.name}}</a>
+    <button class="btn-remove" (click)="removeContribution(contrib)">❌</button>
+  </li>
 </ul>
 
 <h3>Candidates</h3>
