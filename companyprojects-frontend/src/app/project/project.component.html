@@ -26,7 +26,7 @@
 <ul *ngIf="!addingContrib">
   <li *ngIf="contributions.length == 0">No Contributors :(</li>
   <li *ngFor="let contrib of contributions" class="contribution">
-    <a [routerLink]="['/person', contrib.person.id]">{{contrib.person.name}}</a>
+    <a [routerLink]="['/person', contrib.person?.id]">{{contrib.person?.name}}</a>
     <button class="btn-remove" (click)="removeContribution(contrib)">❌</button>
   </li>
 </ul>
