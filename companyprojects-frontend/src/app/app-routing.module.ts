@@ -4,6 +4,7 @@ import { CompaniesComponent } from "./companies/companies.component";
 import { CompanyComponent } from "./company/company.component";
 import { PersonComponent } from "./person/person.component";
 import { ProjectComponent } from "./project/project.component";
+import {NewContributionComponent} from "./new-contribution/new-contribution.component";
 
 const routes: Routes = [
   { path: 'companies', component: CompaniesComponent },

@@ -1,0 +1,34 @@
+<form ngNativeValidate (submit)="submit()">
+  <h3>New Contribution</h3>
+
+  <section class="person">
+    <h4>Person</h4>
+    <select [(ngModel)]="person" name="person-selector" required>
+      <option *ngFor="let person of people" [ngValue]="person">{{person.name}}</option>
+    </select>
+  </section>
+
+  <section class="skills">
+    <h4>Technologies</h4>
+    <div class="skill" *ngFor="let selectableTech of technologies">
+      <input type="checkbox" name="skill-cb"
+             [checked]="selectableTech.selected"
+             (change)="selectableTech.selected = !selectableTech.selected">
+      <label>{{selectableTech.technology?.name}}</label>
+    </div>
+  </section>
+
+  <section class="dates">
+    <h4>Date</h4>
+    <div class="date-row">
+      <label>Start date</label>
+      <input type="datetime-local" [(ngModel)]="startDate" name="startDate" required>
+    </div>
+    <div class="date-row">
+      <label>End date</label>
+      <input type="datetime-local" [(ngModel)]="endDate" name="endDate" required>
+    </div>
+  </section>
+
+  <button type="submit">Submit</button>
+</form>

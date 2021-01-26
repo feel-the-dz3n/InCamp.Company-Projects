@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Person} from "./person.model";
 
@@ -8,9 +8,21 @@ import {Person} from "./person.model";
 export class CandidatesService {
   private endpoint: string = 'http://127.0.0.1:8080/candidates';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  getForProject(projectId: any) {
-    return this.http.get<Person[]>(this.endpoint + `?projectId=${projectId}`);
+  get(
+    projectId: any,
+    checkProjectMembership: boolean,
+    checkCompanyMembership: boolean,
+    checkSkills: boolean,
+    noTargetProjectContrib: boolean) {
+    return this.http.get<Person[]>(
+      this.endpoint +
+      `?projectId=${projectId}` +
+      '&checkProjectMembership=' + checkProjectMembership +
+      '&checkCompanyMembership=' + checkCompanyMembership +
+      '&checkSkills=' + checkSkills +
+      '&noTargetProjectContrib=' + noTargetProjectContrib);
   }
 }

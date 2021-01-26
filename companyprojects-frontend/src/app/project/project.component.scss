@@ -1,7 +1,55 @@
+@import '../../styles.scss';
+
 .candidate {
   display: block;
   border-radius: 5px;
   border: 1px solid #a9a9a9;
   padding: 16px;
   margin-top: 16px;
+}
+
+.centered {
+  padding-top: 16px;
+}
+
+h3 {
+  padding-top: 16px;
+}
+
+
+.technologies {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.add-contrib {
+  margin: 16px;
+  padding: 16px;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid #cecece;
+}
+
+.add-contrib-btn {
+  @extend .btn, .btn-light;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.cancel-contrib-btn {
+  @extend .btn, .btn-secondary;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.technology {
+  margin: 8px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: white;
+  border: 1px solid #b6b6b6;
+}
+
+.contribution {
+
 }

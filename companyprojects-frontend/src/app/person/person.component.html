@@ -6,10 +6,14 @@
   <li *ngFor="let skill of getSkills()">{{skill.name}}</li>
 </ul>
 <h3>Contributions</h3>
-<ul>
-  <li *ngIf="contributions.length == 0">No contributions</li>
-  <li *ngFor="let c of contributions">
-    <p><a [routerLink]="['/project', c.projectId]">{{c.projectName}}</a></p>
-    <p>{{getDatePeriod(c.startDate ,c.endDate)}}</p>
-  </li>
-</ul>
+<p *ngIf="contributions.length == 0">No contributions</p>
+<div *ngFor="let c of contributions" class="contribution">
+  <h4><a [routerLink]="['/project', c.project?.id]">{{c.project?.name}}</a></h4>
+  <p>{{getDatePeriod(c.startDate, c.endDate)}}</p>
+  <p>Experience:</p>
+  <div class="technologies">
+    <p *ngFor="let skill of c.technologies" class="technology">
+      {{skill.name}}
+    </p>
+  </div>
+</div>

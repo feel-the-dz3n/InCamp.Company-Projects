@@ -1,5 +1,5 @@
 TRUNCATE company, project, technology, project_technologies, project_people, person,
-    contribution, person_skills, person_membership;
+    contribution, person_skills, person_membership, contrib_technologies;
 
 SELECT setval('technology_id_seq', 1, FALSE);
 SELECT setval('company_seq', 1, FALSE);
@@ -123,12 +123,3 @@ INSERT INTO project_technologies (project_id, technologies_id)
 VALUES (3, 8);
 INSERT INTO project_technologies (project_id, technologies_id)
 VALUES (3, 9);
-
-INSERT INTO contribution (id, person_id, project_id, start_date, end_date)
-VALUES (nextval('contrib_id_seq'), 1, 1, '2020-12-01 00:00:01', '2021-01-01 00:00:01');
-
-INSERT INTO contribution (id, person_id, project_id, start_date, end_date)
-VALUES (nextval('contrib_id_seq'), 1, 2, '2020-12-01 00:00:01', '2021-01-01 00:00:01');
-
-INSERT INTO contribution (id, person_id, project_id, start_date, end_date)
-VALUES (nextval('contrib_id_seq'), 2, 2, '2018-04-01 00:00:01', '2020-01-01 00:00:01');

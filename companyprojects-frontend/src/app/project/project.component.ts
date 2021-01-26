@@ -5,6 +5,8 @@ import {ProjectService} from "../project.service";
 import {Project} from "../project.model";
 import {Person} from "../person.model";
 import {CandidatesService} from "../candidates.service";
+import {Contribution} from "../contribution.model";
+import {ContributionService} from "../contribution.service";
 
 @Component({
   selector: 'app-project',
@@ -15,10 +17,13 @@ export class ProjectComponent implements OnInit {
   isLoading: boolean = false;
   project: Project | undefined;
   candidates: Person[] = [];
+  contributions: Contribution[] = [];
+  addingContrib: boolean = false;
 
   constructor(private route: ActivatedRoute,
               private projectService: ProjectService,
-              private candidatesService: CandidatesService) {
+              private candidatesService: CandidatesService,
+              private contribService: ContributionService) {
   }
 
   ngOnInit(): void {
@@ -36,7 +41,12 @@ export class ProjectComponent implements OnInit {
           this.isLoading = false;
         });
 
-    this.route.paramMap.pipe(switchMap(p => this.candidatesService.getForProject(p.get('id'))))
+    this.route.paramMap.pipe(switchMap(p => this.candidatesService.get(
+      p.get('id'),
+      true,
+      true,
+      true,
+      false)))
       .subscribe(
         r => {
           this.candidates = r;
@@ -47,9 +57,70 @@ export class ProjectComponent implements OnInit {
           console.log(e);
           this.isLoading = false;
         });
+
+    this.route.paramMap.pipe(switchMap(p => this.projectService.getContributions(p.get('id'))))
+      .subscribe(
+        r => {
+          this.contributions = r;
+          this.isLoading = false;
+        },
+        e => {
+          alert("Failed to fetch contributors");
+          console.log(e);
+          this.isLoading = false;
+        });
   }
 
   getPeople() {
     return this.project && this.project.people ? this.project.people : [];
+  }
+
+  removeContribution(contrib: Contribution) {
+    this.contribService.delete(contrib.id).subscribe(
+      r => {
+        this.contributions.splice(
+          this.contributions.indexOf(contrib),
+          1);
+
+      },
+      e => {
+        alert('Failed to remove contribution');
+        console.log(e);
+      });
+  }
+
+  formatDateDigit(num: any) {
+    if ((num + '').length <= 1) {
+      return '0' + num;
+    }
+    else {
+      return num;
+    }
+  }
+
+  getFormattedDate(date: Date) {
+    let day = this.formatDateDigit(date.getDate());
+    let month = this.formatDateDigit(date.getMonth() + 1);
+    let year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+  }
+
+  getDatePeriod(startDateISO: any, endDateISO: any) {
+    let startDate = new Date(startDateISO);
+    let endDate = new Date(endDateISO);
+
+    return `${this.getFormattedDate(startDate)} - ${this.getFormattedDate(endDate)}`;
+  }
+
+  addContribution(contrib: Contribution) {
+    this.contribService.add(contrib).subscribe(
+      r => {
+        this.contributions.push(r);
+        this.addingContrib = false;
+      },
+      e => {
+        alert('Failed to add contribution');
+        console.log(e);
+      });
   }
 }

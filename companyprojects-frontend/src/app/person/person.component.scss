@@ -2,3 +2,25 @@ h3 {
   font-weight: 400;
   font-size: 21px;
 }
+
+
+.contribution {
+  display: block;
+  border-radius: 5px;
+  border: 1px solid #a9a9a9;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.technologies {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.technology {
+  margin: 8px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: white;
+  border: 1px solid #b6b6b6;
+}

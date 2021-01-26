@@ -15,6 +15,9 @@ public class PeopleController {
     @Autowired
     private ContributionRepository contribRepository;
 
+    @Autowired
+    private ProjectService projectService;
+
     @GetMapping
     public ResponseEntity<Iterable<Person>> getAll() {
         return new ResponseEntity(personRepository.findAll(), HttpStatus.OK);
@@ -32,10 +35,18 @@ public class PeopleController {
     }
 
     @GetMapping("/{personId}/contributions")
-    public ResponseEntity<Iterable<ContributionProjectDTO>> getContributions(
+    public ResponseEntity<Iterable<Contribution>> getContributions(
             @PathVariable Integer personId) {
         return new ResponseEntity(
-                contribRepository.findContributionProjectByPerson(personId),
+                contribRepository.findByPerson(personId),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/{personId}/membership-projects")
+    public ResponseEntity<Iterable<Project>> getMembershipProjects(
+            @PathVariable Integer personId) {
+        return new ResponseEntity(
+                projectService.getForPerson(personId),
                 HttpStatus.OK);
     }
 }

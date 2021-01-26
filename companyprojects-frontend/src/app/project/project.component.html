@@ -1,23 +1,44 @@
 <h2 *ngIf="isLoading">Loading</h2>
 <h2>{{project?.name}}</h2>
-<p style="text-align: center;">
+<p class="centered">
   by <a [routerLink]="['/company', project?.company?.id]">{{project?.company?.name}}</a></p>
+
 <h3>Technologies</h3>
-<p *ngFor="let skill of project?.technologies" style="display: inline; margin: 0; padding: 16px;">
-  {{skill.name}}
-</p>
+<div class="technologies">
+  <p *ngFor="let skill of project?.technologies" class="technology">
+    {{skill.name}}
+  </p>
+</div>
+
 <h3>People</h3>
 <ul>
   <li *ngIf="getPeople().length == 0">No People :(</li>
   <li *ngFor="let person of getPeople()">
     <a [routerLink]="['/person', person.id]">{{person.name}}</a></li>
 </ul>
-<h3 style="padding-top: 16px;">Project needs more people?</h3>
-<h4 style="text-align: center;">These people might help you</h4>
+
+<h3>Contributors</h3>
+<button *ngIf="!addingContrib" class="add-contrib-btn" (click)="addingContrib = true">Add Contribution</button>
+<div class="add-contrib" *ngIf="addingContrib">
+  <app-new-contribution (submitContrib)="addContribution($event)" [project]="project"></app-new-contribution>
+  <button class="cancel-contrib-btn" (click)="addingContrib = false">Cancel</button>
+</div>
+<ul *ngIf="!addingContrib">
+  <li *ngIf="contributions.length == 0">No Contributors :(</li>
+  <li *ngFor="let contrib of contributions" class="contribution">
+    <a [routerLink]="['/person', contrib.person?.id]">{{contrib.person?.name}}</a>
+    <p>({{getDatePeriod(contrib.startDate, contrib.endDate)}})</p>
+    <button class="btn-remove" (click)="removeContribution(contrib)">❌</button>
+  </li>
+</ul>
+
+<h3>Candidates</h3>
 <div *ngFor="let candidate of candidates" class="candidate">
   <h4><a [routerLink]="['/person', candidate.id]">{{candidate.name}}</a></h4>
   <p>Experience:</p>
-  <p *ngFor="let skill of candidate.skills" style="display: inline; margin: 0; padding: 16px;">
-    {{skill.name}}
-  </p>
+  <div class="technologies">
+    <p *ngFor="let skill of candidate.skills" class="technology">
+      {{skill.name}}
+    </p>
+  </div>
 </div>

@@ -7,14 +7,35 @@ import org.springframework.data.repository.query.Param;
 public interface ContributionRepository extends CrudRepository<Contribution, Integer> {
     @Query(value = "" +
             "select " +
-            "c.id, " +
-            "c.person_id as PersonId, " +
-            "c.end_date as EndDate, " +
-            "c.start_date as StartDate, " +
-            "c.project_id as ProjectId, " +
-            "p.name as ProjectName " +
+            "* " +
             "from contribution as c " +
-            "right join project as p on p.id = c.project_id " +
             "where c.person_id = :personId", nativeQuery = true)
-    Iterable<ContributionProjectDTO> findContributionProjectByPerson(@Param("personId") Integer personId);
+    Iterable<Contribution> findByPerson(@Param("personId") Integer personId);
+
+    @Query(value = "" +
+            "select " +
+            "* " +
+            "from contribution as c " +
+            "where c.person_id = :personId " +
+            "and c.project_id = :projectId", nativeQuery = true)
+    Iterable<Contribution> findByPersonAndProject(
+            @Param("personId") Integer personId,
+            @Param("projectId") Integer projectId);
+
+    @Query(value = "" +
+            "select " +
+            "count(*) " +
+            "from contribution as c " +
+            "where c.person_id = :personId " +
+            "and c.project_id = :projectId", nativeQuery = true)
+    Long countByPersonAndProject(
+            @Param("personId") Integer personId,
+            @Param("projectId") Integer projectId);
+
+    @Query(value = "" +
+            "select " +
+            "* " +
+            "from contribution as c " +
+            "where c.project_id = :projectId", nativeQuery = true)
+    Iterable<Contribution> findByProject(@Param("projectId") Integer projectId);
 }
