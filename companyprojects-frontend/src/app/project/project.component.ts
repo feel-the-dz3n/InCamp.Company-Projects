@@ -6,6 +6,7 @@ import {Project} from "../project.model";
 import {Person} from "../person.model";
 import {CandidatesService} from "../candidates.service";
 import {Contribution} from "../contribution.model";
+import {ContributionService} from "../contribution.service";
 
 @Component({
   selector: 'app-project',
@@ -21,7 +22,8 @@ export class ProjectComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private projectService: ProjectService,
-              private candidatesService: CandidatesService) {
+              private candidatesService: CandidatesService,
+              private contribService: ContributionService) {
   }
 
   ngOnInit(): void {
@@ -74,10 +76,27 @@ export class ProjectComponent implements OnInit {
   }
 
   removeContribution(contrib: Contribution) {
-    // TODO
+    this.contribService.delete(contrib.id).subscribe(
+      r => {
+        this.contributions.splice(
+          this.contributions.indexOf(contrib),
+          1);
+
+      },
+      e => {
+        alert('Failed to remove contribution');
+        console.log(e);
+      });
   }
 
   addContribution(contrib: Contribution) {
-    // TODO
+    this.contribService.add(contrib).subscribe(
+      r => {
+        this.contributions.push(r);
+      },
+      e => {
+        alert('Failed to add contribution');
+        console.log(e);
+      });
   }
 }
