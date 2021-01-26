@@ -2,11 +2,11 @@ import {Technology} from "./technology.model";
 import {Project} from "./project.model";
 import {Person} from "./person.model";
 
-export interface Contribution {
+export class Contribution {
   id: number | undefined;
-  project: Project;
-  technologies: Technology[];
-  person: Person;
+  project?: Project;
+  technologies: Technology[] = [];
+  person?: Person;
   startDate: string | undefined;
   endDate: string | undefined;
 }
